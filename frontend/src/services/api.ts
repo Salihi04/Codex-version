@@ -48,7 +48,10 @@ export const clinicApi = {
     return result.slots;
   },
 
-  createBooking(payload: { slot_id: string; name: string; email: string }, idempotencyKey = crypto.randomUUID()): Promise<Booking> {
+  createBooking(
+    payload: { slot_id: string; name: string; email: string },
+    idempotencyKey: string = crypto.randomUUID()
+  ): Promise<Booking> {
     return request<Booking>('/bookings', {
       method: 'POST',
       headers: { 'Idempotency-Key': idempotencyKey },
